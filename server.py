@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 import json
 import tempfile
 import os
@@ -8,6 +9,7 @@ import base64
 
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 @app.route("/", methods=["POST"])
