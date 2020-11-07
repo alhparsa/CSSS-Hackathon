@@ -21,7 +21,7 @@ def post():
     f.seek(0)
     ncoded_string = base64.b64encode(f.read())
     f.close()
-    return ncoded_string
+    return jsonify({"image": ncoded_string.decode("utf-8")})
 
 
 @app.route("/", methods=["GET"])
@@ -37,7 +37,7 @@ def get():
     f.close()
 
     return f'''<!DOCTYPE html>
-<html>
+<html>  
 <body>
 <img src="data:image/jpg;base64,{ncoded_string.decode("utf-8")}"></img>
 </body>
