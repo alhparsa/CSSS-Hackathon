@@ -30,7 +30,7 @@ def get_encoded_string(url):
 def post():
     file = json.loads(request.data.decode('utf-8'))
     ncoded_string = get_encoded_string(file["img"])
-    return build_actual_response(jsonify({"image": ncoded_string.decode("utf-8")}))
+    return build_actual_response(jsonify({"image": f'data:image/jpg;base64,{ncoded_string.decode("utf-8")}'}))
 
 
 @app.route("/", methods=["GET"])
