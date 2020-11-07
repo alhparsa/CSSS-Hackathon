@@ -10,31 +10,29 @@ import base64
 app = Flask(__name__)
 
 
-@app.route("/", methods=["POST"])
-def post():
-    file = request.json
-    image_bin = requests.get(file["img"]).content
+def get_encoded_string(url):
+    image_bin = requests.get(url).content
     f = tempfile.TemporaryFile(dir=os.path.dirname(__file__))
     f.write(image_bin)
     image = Image.open(f)
     # do jasper function
     f.seek(0)
-    ncoded_string = base64.b64encode(f.read())
+    encoded_string = base64.b64encode(f.read())
     f.close()
+    return encoded_string
+
+
+@app.route("/", methods=["POST"])
+def post():
+    file = request.json
+    ncoded_string = get_encoded_string(file["img"])
     return jsonify({"image": ncoded_string.decode("utf-8")})
 
 
 @app.route("/", methods=["GET"])
 def get():
     file = request.args.get("image")
-    image_bin = requests.get(file).content
-    f = tempfile.TemporaryFile(dir=os.path.dirname(__file__))
-    f.write(image_bin)
-    image = Image.open(f)
-    # do jasper function
-    f.seek(0)
-    ncoded_string = base64.b64encode(f.read())
-    f.close()
+    ncoded_string = get_encoded_string(file)
 
     return f'''<!DOCTYPE html>
 <html>  
