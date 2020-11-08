@@ -15,20 +15,27 @@ import torchvision.transforms as transforms
 from torch.autograd import Variable
 import torchvision.utils as vutils
 from Transformer import Transformer
+from glob import glob
 
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-model = Transformer()
+models = []
 valid_ext = ['.jpg', '.png']
-model.load_state_dict(torch.load(os.path.join(
-    './pretrained_model', 'Shinkai_net_G_float.pth')))
-model.eval()
-model.cpu()
+for i,weights in enumerate(glob('./pretrained_model/*.pth')):
+    models.append(Transformer())
+    models[i].load_state_dict(torch.load(weights))
+    models[i].eval()
+    models[i].cpu()
+    print(weights)
+# model.load_state_dict(torch.load(os.path.join(
+#     './pretrained_model', 'Shinkai_net_G_float.pth')))
+# model.eval()
+# model.cpu()
 i = 0
 
 
-def convert_image(input_image):
+def convert_image(input_image, i):
     print('here')
     orig_h = input_image.size[0]
     orig_w = input_image.size[1]
@@ -48,7 +55,7 @@ def convert_image(input_image):
     input_image = transforms.ToTensor()(input_image).unsqueeze(0)
     input_image = -1 + 2 * input_image
     input_image = Variable(input_image, volatile=True).float()
-    output_image = model(input_image)
+    output_image = models[i](input_image)
     output_image = output_image[0]
     output_image = output_image[[2, 1, 0], :, :]
     output_image = output_image.data.cpu().float() * 0.5 + 0.5
@@ -58,9 +65,9 @@ def convert_image(input_image):
     return output_image
 
 
-def get_encoded_string(byte_file):
+def get_encoded_string(byte_file,i):
     img = Image.open(BytesIO(base64.b64decode(byte_file)))
-    output_image = convert_image(img)
+    output_image = convert_image(img,i)
     buffered = BytesIO()
     output_image.save(buffered, format="JPEG")
     img_str = base64.b64encode(buffered.getvalue())
@@ -74,7 +81,7 @@ def post():
     file = json.loads(request.data.decode('utf-8'))
     try:
         ncoded_string = get_encoded_string(
-            file["img"].split('data:image/png;base64,')[1])
+            file["img"].split('data:image/png;base64,')[1], int(file["style"]))
         resp = Response(json.dumps(
             {"img": f'data:image/jpg;base64,{ncoded_string.decode("utf-8")}'}), status=200, mimetype='application/json')
         return build_actual_response(resp)
