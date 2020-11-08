@@ -37,4 +37,8 @@ http://www.sfu.ca/sfunews/stories/2020/09/the-hive-program-helps-new-students-fi
 
 https://images.pexels.com/photos/2444403/pexels-photo-2444403.jpeg
 
+Before:
+![Before](https://github.com/alhparsa/CSSS-Hackathon/blob/main/res/Landscape_Regular.jpeg?raw=true)
 
+After:
+![After](https://github.com/alhparsa/CSSS-Hackathon/blob/main/res/Landscape_Anime.jpeg?raw=true)
