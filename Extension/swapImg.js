@@ -34,6 +34,7 @@ function createfunc(i) {
 				.catch((err) => {
 					console.log(err);
 				});
+		}
 		};
 		images[i].parentElement.appendChild(button);
 	};

@@ -106,8 +106,9 @@ def build_preflight_response():
 
 def build_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("origin", "*")
     return response
 
 
 if __name__ == "__main__":
-    app.run(debug=True, ssl_context='adhoc')
+    app.run(debug=True)
