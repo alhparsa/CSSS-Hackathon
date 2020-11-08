@@ -69,7 +69,6 @@ def get_encoded_string(byte_file):
 
 @app.route("/", methods=["POST"])
 @csp_header({'default-src': "'https: wss: blob: '", 'script-src': "'self'"})
-@csp_header()
 def post():
     file = json.loads(request.data.decode('utf-8'))
     try:
@@ -104,8 +103,9 @@ def build_preflight_response():
 
 def build_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("origin", "*")
     return response
 
 
 if __name__ == "__main__":
-    app.run(debug=True, ssl_context='adhoc')
+    app.run(debug=True)

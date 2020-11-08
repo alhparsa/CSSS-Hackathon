@@ -21,10 +21,12 @@ function createfunc(i) {
 			console.log(images[i].height);
 			var my_data = "";
 			my_data = imgToBase64(images[i]);
-			fetch("https://localhost:5000/", {
+			if (my_data.length > 500){
+				console.log(my_data);
+			fetch("http://localhost:5000/", {
 				method: "POST",
 				body: JSON.stringify({ img: my_data }),
-				header: { "Access-Control-Allow-Origin": "self" },
+				header: { "Access-Control-Allow-Origin": "*" },
 				credentials: "same-origin",
 			})
 				.then((res) => res.json())
@@ -34,6 +36,7 @@ function createfunc(i) {
 				.catch((err) => {
 					console.log(err);
 				});
+		}
 		};
 		images[i].parentElement.appendChild(button);
 	};
