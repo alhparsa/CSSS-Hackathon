@@ -31,6 +31,12 @@ As of right now, this requires the use of a UNIX device to run the Gunicorn WSGI
     Otherwise, the image will not load.
 8. If you know why 7 happens and how to fix it, pls tell us
 
+Here it is in action
+----
+![image 1](images/sample1.gif)
+![image 2](images/sample2.gif)
+
+
 Test it out for yourself on websites that don't cache photos, and where clicking photos doesn't redirect you!
 E.G.
 http://www.sfu.ca/sfunews/stories/2020/09/the-hive-program-helps-new-students-find-friends--connections-an.html
