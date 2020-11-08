@@ -69,7 +69,7 @@ def get_encoded_string(byte_file):
 
 @app.route("/", methods=["POST"])
 @csp_header({'default-src': "'https: wss: blob: '", 'script-src': "'self'"})
-@csp_header()
+# @csp_header()
 def post():
     file = json.loads(request.data.decode('utf-8'))
     try:
@@ -84,7 +84,9 @@ def post():
 
 @app.route("/", methods=["GET"])
 def get():
-    file = request.args.get("image")
+    # with open('')
+    # file = request.args.get("image")
+    file = Image.open('test_img.jpg')
     ncoded_string = get_encoded_string(file)
     return f'''<!DOCTYPE html>
 <html>  
