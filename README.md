@@ -38,11 +38,6 @@ Here it is in action
 [![image 2](images/sample2.gif)](http://www.sfu.ca/sfunews/stories/2020/10/sfu-remains--1-comprehensive-university-in-canada--according-to-.html?utm_source=slidernews&amp;utm_medium=macleans-oct14&amp;utm_campaign=homepage)
 
 
-Before:
-![Before](https://github.com/alhparsa/CSSS-Hackathon/blob/main/res/Landscape_Regular.jpeg?raw=true)
-
-After:
-![After](https://github.com/alhparsa/CSSS-Hackathon/blob/main/res/Landscape_Anime.jpeg?raw=true)
-
+Acknowledgement
 -------
 Many thanks to @Yijunmaverick for his [CartoonGan](https://github.com/Yijunmaverick/CartoonGAN-Test-Pytorch-Torch) and the pretrained weights. 
