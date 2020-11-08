@@ -1,0 +1,9 @@
+torch
+torchvision
+pillow
+flask
+flask_cors
+flask_csp
+pytorch
+numpy
+pyopenssl
