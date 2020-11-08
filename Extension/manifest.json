@@ -1,0 +1,25 @@
+  {
+    "name": "Anime Screen Conversion Image Ixtension",
+    "version": "1.0",
+    "description": "Makes all images into anime images",
+    "permissions": ["declarativeContent", "storage", "activeTab", "contextMenus"],
+    "background": {
+    	"scripts": ["background.js"],
+    	"persistent": false
+    },
+    "page_action": {
+      "default_popup": "popup.html"
+    },
+    // "content_scripts":[{
+    // 	"matches": ["<all_urls>"],
+    // 	"js": ["setimghook.js"]
+    // }],
+    "options_page": "options.html",
+    "icons": {
+      "16": "icons/ascii_icon_16.png",
+      "32": "icons/ascii_icon_32.png",
+      "48": "icons/ascii_icon_48.png",
+      "128": "icons/ascii_icon_128.png"
+    },
+    "manifest_version": 2
+  }
