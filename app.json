@@ -1,0 +1,6 @@
+{
+    "name": "PyTorch Image Transformer",
+    "description": "Image Transformer built using PyTorch",
+    "repository": "https://github.com/alhparsa/CSSS-Hackathon",
+    "keywords": ["python", "flask", "pytorch", "bootstrap"]
+  }
